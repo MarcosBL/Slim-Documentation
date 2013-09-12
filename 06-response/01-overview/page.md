@@ -1,5 +1,5 @@
 ---
-title: Response - Introducción
+title: Respuesta - Introducción
 status: live
 ---
 

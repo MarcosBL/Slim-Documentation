@@ -1,20 +1,23 @@
 ---
-title: Response Helpers
+title: Helpers de la Respuesta
 status: live
 ---
 
-The response object provides helper methods to inspect and interact with the underlying HTTP response.
+El objeto respuesta nos facilita algunos métodos de ayuda para inspeccionar e 
+interactuar con la respuesta HTTP subyacente.
 
-### Finalize
+### Finalización
 
-The response object’s `finalize()` method returns a numeric array of `[status, header, body]`. The status is
-an integer; the header is an iterable data structure; and the body is a string. Were you to create a new
-`\Slim\Http\Response` object in your Slim application or its middleware, you would call the response object's
-`finalize()` method to produce the status, header, and body for the underlying HTTP response.
+El método `finalize()` del objeto respuesta devuelve un array numérico consistente 
+en `[status, header, body]`. El status es un entero; el header es una estructura 
+de datos iterable; y el body es una cadena de texto. Una vez creado un objeto tipo 
+`\Slim\Http\Response` en tu aplicación Slim o en su middleware, podrías llamar 
+al método `finalize()` del objeto respuesta para generar el status, header, y 
+de la respuesta HTTP subyacente.
 
     <?php
     /**
-     * Prepare new response object
+     * Preparamos un nuevo objeto response
      */
     $res = new \Slim\Http\Response();
     $res->setStatus(400);
@@ -31,45 +34,45 @@ an integer; the header is an iterable data structure; and the body is a string. 
      */
     $array = $res->finalize();
 
-### Redirect
+### Redirección
 
-The response object’s `redirect()` method will set the response status and its **Location:** header needed to
-return a **3xx Redirect** response.
+El método `redirect()` del objeto respuesta asignará el correspondiente status y 
+su cabecera **Location:** necesaria para devolver una respuesta **3xx Redirect**.
 
     <?php
     $app->response->redirect('/foo', 303);
 
-### Status Introspection
+### Análisis del Status
 
-The response object provides other helper methods to inspect its current status. All of the following methods
-return a boolean value:
+El objeto respuesta provee otros métodos de ayuda para inspeccionar su estado 
+actual. Todos los métodos siguientes devuelven un valor booleano:
 
     <?php
     $res = $app->response;
 
-    //Is this an informational response?
+    //Se trata de respueta informativa?
     $res->isInformational();
 
-    //Is this a 200 OK response?
+    //Se trata de una respuesta 200 OK?
     $res->isOk();
 
-    //Is this a 2xx successful response?
+    //Se trata de una respuesta 2xx exitosa?
     $res->isSuccessful();
 
-    //Is this a 3xx redirection response?
+    //Se trata de una respuesta de redirección 3xx?
     $res->isRedirection();
 
-    //Is this a specific redirect response? (301, 302, 303, 307)
+    //Se trata de una respuesta de redirección específica? (301, 302, 303, 307)
     $res->isRedirect();
 
-    //Is this a forbidden response?
+    //Se trata de una respuesta prohibida?
     $res->isForbidden();
 
-    //Is this a not found response?
+    //Se trata de una respuesta No encontrado?
     $res->isNotFound();
 
-    //Is this a client error response?
+    //Se trata de una respuesta de error del cliente?
     $res->isClientError();
 
-    //Is this a server error response?
+    //Se trata de una respuesta de error del servidor?
     $res->isServerError();
