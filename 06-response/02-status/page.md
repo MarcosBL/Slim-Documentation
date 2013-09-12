@@ -1,18 +1,20 @@
 ---
-title: Response Status
+title: Status de Respuesta
 status: live
 ---
 
-The HTTP response returned to the client will have a status code indicating the response’s type
-(e.g. 200 OK, 400 Bad Request, or 500 Server Error). You can use the Slim application’s response object to set the
-HTTP response’s status like this:
+El objeto de respuesta HTTP devuelto al cliente dispondrá de un código de status
+indicando el tipo de respuesta (p.e. 200 OK, 400 Bad Request, o 500 Server Error).
+Puedes utilizar el objeto response de la aplicación Slim para fijar el estado de
+la respuesta HTTP de esta forma:
 
     <?php
     $app->response->setStatus(400);
 
-You only need to set the response object’s status if you intend to return an HTTP response that *does not* have
-a 200 OK status. You can just as easily fetch the response object’s current HTTP status by invoking the same
-method without an argument, like this:
+Solo necesitas asignar el estado del objeto response si deseas generar una
+respuesta HTTP *que no* tenga un status 200 OK. También puedes obtener el estado 
+actual del status HTTP de respuesta invocando al mismo método sin argumentos, de
+esta forma:
 
     <?php
     $status = $app->response->getStatus();
