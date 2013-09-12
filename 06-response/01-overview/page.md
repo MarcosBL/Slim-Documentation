@@ -1,23 +1,27 @@
 ---
-title: Response Overview
+title: Response - Introducción
 status: live
 ---
 
-Each Slim application instance has one response object. The response object is an abstraction of your Slim application's
-HTTP response that is returned to the HTTP client. Although each Slim application includes a default response object,
-the `\Slim\Http\Response` class is idempotent; you may instantiate the class at will (in middleware or elsewhere in
-your Slim application) without affecting the application as a whole. You can obtain a reference to the Slim
-application’s response object with:
+Cada instancia de aplicación Slim tiene un objeto response. El objeto response 
+es una abstracción del objeto HTTP response de tu applicación Slim que es 
+devuelta al cliente HTTP. Aunque cada aplicación Slim incluye un objeto de 
+response por defecto, la clase `\Slim\Http\Response` es idempotente; puedes
+instanciar la clase a tu gusto (en un middleware o en cualquier parte de tu 
+aplicación Slim) sin afectar a la aplicación como conjunto. Puedes obetener
+una referencia al objeto response de la aplicación Slim con:
 
     <?php
     $app = new \Slim\Slim();
     $app->response;
 
-An HTTP response has three primary properties:
+Un objeto response HTTP tiene res propiedades primarias:
 
 * Status
 * Header
 * Body
 
-The response object provides helper methods, described next, that help you interact with these HTTP response
-properties. The default response object will return a **200 OK** HTTP response with the **text/html** content type.
+El objeto response proveé métodos helper, descritos a continuación, que te 
+ayudarán a interactuar con dichas propiedades del objeto response HTTP. El 
+objeto por defecto devolverá un response HTTP **200 OK** con el content-type 
+**text/html**
