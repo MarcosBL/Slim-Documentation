@@ -1,32 +1,37 @@
 ---
-title: Configuration Overview
+title: Configuración - Introducción
 status: live
 ---
 
-There are two ways to apply settings to the Slim application. First during Slim application instantiation and second
-after instantiation. All settings can be applied at instatiation time by passing Slim’s constructor an associative
-array. All settings can be retrieved and modified after instantiation, however some of them can not be done simply by
-using the config application instance method but will be demonstrated as necessary below. Before I list the available
-settings, I want to quickly explain how you may define and inspect settings with your Slim application.
+Existen dos manera de configurar la aplicación Slim. Primero durante la instanciación 
+y segundo después de la instanciación. Todas las opciones pueden ser aplicadas al 
+momento de la instanciación pasando un array asociativo al constructor de la clase 
+Slim. Todas las opciones pueden ser obtenidas y modificadas luego de la instanciación, 
+sin embargo algunas de ellas no pueden ser cambiadas simplemente usando el método 
+de la instancia de la aplicación pero sera demostrado cuando sea necesario más 
+abajo. Antes de mostrar las opciones disponibles, quiero explicar rápidamente como 
+puedes definir e inspeccionar las opciones en tu aplicación Slim.
 
-### During Instantiation
+### Durante la instanciación
 
-To define settings upon instantiation, pass an associative array into the Slim constructor.
+Para definir opciones durante la instanciación, pasa un array asociativo en el constructor 
+de Slim.
 
     <?php
     $app = new Slim(array(
         'debug' => true
     ));
 
-### After Instantiation
+### Después de la instanciación
 
-To define settings after instantiation, the majority can use the config application instance method; the first
-argument is the setting name and the second argument is the setting value.
+Para definir opciones después de la instanciación, la mayoría puede usar el método de la instancia 
+de la configuración de la aplicación; el primer argumento es el nombre de la opción y el segundo 
+es el valor de la opción.
 
     <?php
     $app->config('debug', false);
 
-You may also define multiple settings at once using an associative array:
+También puedes definir múltiples opciones al mismo tiempo usando un array asociativo:
 
     <?php
     $app->config(array(
@@ -34,10 +39,13 @@ You may also define multiple settings at once using an associative array:
         'templates.path' => '../templates'
     ));
 
-To retrieve the value of a setting, you also use the config application instance method; however, you only pass one
-argument - the name of the setting you wish to inspect. If the setting you request does not exist, `null` is returned.
+Para obtener el valor de una opción, puedes usar también el método de la instancia 
+de la configuración de la aplicación; sin embargo, solo pasas un solo argumento - 
+el nombre de la opción a inspeccionar. Si la opción que pides no existe, `null` es 
+regresado.
 
     <?php
     $settingValue = $app->config('templates.path'); //returns "../templates"
 
-You are not limited to the settings shown below; you may also define your own.
+No estas limitado a las opciones mostradas abajo; también puedes definir tus 
+propias opciones.
