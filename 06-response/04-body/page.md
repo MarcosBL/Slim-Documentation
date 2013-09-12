@@ -2,9 +2,9 @@
 title: Response Body
 status: live
 ---
-
-The HTTP response returned to the client will have a body. The HTTP body is the actual content of the HTTP response
-delivered to the client. You can use the Slim application’s response object to set the HTTP response’s body:
+La respuesta HTTP devuelta al cliente dispondrá de un cuerpo. El cuerpo HTTP es
+el contenido actual de la respuesta HTTP enviada al cliente. Puedes utilizar el 
+objeto response de la aplicación Slim para asignar el cuerpo de la respuesta HTTP:
 
     <?php
     $app = new \Slim\Slim();
@@ -15,15 +15,18 @@ delivered to the client. You can use the Slim application’s response object to
     // Append response body
     $app->response->write('Bar');
 
-When you overwrite or append the response object’s body, the response object will automatically set the
-**Content-Length** header based on the bytesize of the new response body.
+Cuando sobreescribes o añades al cuerpo del objeto respuesta, dicho objeto respuesta 
+asignará automáticamente la cabecera **Content-Length** basándose en el tamaño en 
+bytes del nuevo cuerpo de respuesta.
 
-You can fetch the response object’s body like this:
+Puedes obtener el cuerpo del objeto respuesta de esta forma:
 
     <?php
     $body = $app->response->getBody();
 
-Usually, you will never need to manually set the response body with the `setBody()` or `write()` methods; instead,
-the Slim app will do this for you. Whenever you `echo()` content inside a route's callback function, the
-`echo()`’d content is captured in an output buffer and appended to the response body before the HTTP response
-is returned to the client.
+Por lo general, nunca necesitarás asignar el cuerpo de la respuesta manualmente con 
+los métodos `setBody()` o `write()` methods; en su lugar, la aplicación Slim
+lo hará por ti. Cada vez que hagas un `echo()` de contenido dentro de la función
+callback de una ruta, el contenido del `echo()` es capturado en un buffer de salida
+y añadido al cuerpo de respuesta antes de que la respuesta HTTP sea enviada al 
+cliente.
