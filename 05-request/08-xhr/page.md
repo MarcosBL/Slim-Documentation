@@ -3,13 +3,14 @@ title: XMLHttpRequest
 status: live
 ---
 
-When using a Javascript framework like MooTools or jQuery to execute an XMLHttpRequest, the XMLHttpRequest will
-usually be sent with a **X-Requested-With** HTTP header. The Slim application will detect the HTTP
-request’s **X-Requested-With** header and flag the request as such. If for some reason an XMLHttpRequest cannot
-be sent with the **X-Requested-With** HTTP header, you can force the Slim application to assume an HTTP request
-is an XMLHttpRequest by setting a GET, POST, or PUT parameter in the HTTP request named “isajax” with a truthy value.
+Cuando se use un framework de Javascript como MooTools o jQuery para ejecutar un XMLHttpRequest, el XMLHttpRequest 
+sera enviado usualmente con una cabecera de HTTP **X-Requested-With**. La aplicacion Slim detectara la cabecera 
+**X-Requested-With** del request HTTP y marcara el request como tal. Si por alguna razon un XMLHttpRequest no 
+puede ser enviada con la cabecera de HTTP **X-Requested-With**, puedes forzar a la aplicacion Slim a asumir que 
+un request es XMLHttpRequest al colocar un parametro GET, POST o PUT en el request HTTP llamado “isajax” con un 
+valor verdadero.
 
-Use the request object's `isAjax()` or `isXhr()` method to ttell if the current request is an XHR/Ajax request:
+Puedes usar los metodos `isAjax()` o `isXhr()` del objeto request para saber si el request actual es un request XHR/Ajax:
 
     <?php
     $isXHR = $app->request->isAjax();
