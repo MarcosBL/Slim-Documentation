@@ -1,4 +1,4 @@
 ---
-title: View
+title: Vistas
 status: live
 ---
