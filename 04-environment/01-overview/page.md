@@ -1,74 +1,82 @@
 ---
-title: Environment Overview
+title: Ambiente - Introducción
 status: live
 ---
 
-The Slim Framework implements a derivation of the [Rack protocol](http://rack.rubyforge.org/doc/files/SPEC.html). When
-you instantiate a Slim application, it immediately inspects the `$_SERVER` superglobal and derives a set of environment
-variables that dictate application behavior.
+Slim Framework implementa una derivación del [protocolo Rack](http://rack.rubyforge.org/doc/SPEC.html). 
+Cuando creas una instancia de la aplicación Slim, esta inmediatamente inspecciona la superglobal `$_SERVER` 
+y deriva un grupo de variables de ambiente que dictan el comportamiento de la aplicación.
 
-### What is the Environment?
+### ¿Que es el Ambiente?
 
-A Slim application’s “environment” is an associative array of settings that are parsed once and made accessible to
-the Slim application and its middleware. You are free to modify the environment variables during runtime; changes
-will propagate immediately throughout the application.
+El ambiente de una aplicación Slim es un array asociativo de opciones que son leídas una vez y pueden se 
+accedidas por la aplicación Slim y su middleware. Eres libre de modificar las variables de ambiente durante 
+el tiempo de vida de la aplicación; los cambios van a propagar inmediatamente a través de la aplicación.
 
-When you instantiate a Slim application, the environment variables are derived from the `$_SERVER` superglobal; you do
-not need to set these yourself. However, you are free to modify or supplement these variables in Slim middleware.
+Cuando creas una instancia de una aplicación Slim, las variables de ambiente son derivadas de la superglobal 
+`$_SERVER`; no necesitas colocarlas manualmente. Sin embargo, eres libre de modificar o suplementar estas 
+variables in el middleware de Slim.
 
-These variables are fundamental to determining how your Slim application runs: the resource URI, the HTTP method,
-the HTTP request body, the URL query parameters, error output, and more. Middleware, described later, gives you
-the power to - among other things - manipulate environment variables before and/or after the Slim application is run.
+Estas variables son fundamentales para determinas como la aplicación Slim va a correr: el URI de los recursos, 
+el método HTTP, el cuerpo del request HTTP, los parámetros del query URL, mensajes de error, y mas. El middleware, 
+descrito mas adelante, te da el poder de - entre otras cosas - manipular las variables de ambiente antes y/o después 
+que la aplicación Slim comience a correr.
 
-### Environment Variables
+### Variables de Ambiente
 
-The following text respectfully borrows the same information originally available at
-<http://rack.rubyforge.org/doc/files/SPEC.html>. The environment array must include these variables:
+El siguiente texto toma prestado con respeto la misma información disponible en <http://rack.rubyforge.org/doc/SPEC.html>. 
+El array de ambiente debe incluir estas variables:
 
 REQUEST_METHOD
-: The HTTP request method. This is required and may never be an empty string.
+: El método del request HTTP. Este es requerido y nunca puede ser un string vacío.
 
 SCRIPT_NAME
-: The initial portion of the request URI’s “path” that corresponds to the physical directory in which the Slim
-application is installed — so that the application knows its virtual “location”. This may be an empty string if the
-application is installed in the top-level of the public document root directory. This will never have a trailing slash.
+: La porción inicial de la “ruta” del request URI que corresponde al directorio físico en donde la aplicación Slim 
+esta instalada — para que la aplicación sepa su “localización” virtual. Este puede ser un string vacío si la aplicación 
+esta instalada en el nivel superior del directorio publico de la raíz del documento. Este nunca terminara con una barra oblicua.
 
 PATH_INFO
-: The remaining portion of the request URI’s “path” that determines the “virtual” location of the HTTP request’s target resource within the Slim application context. This will always have a leading slash; it may or may not have a trailing slash.
+: La porción restante de la “ruta” del request URI que determina la localización “virtual” del objetivo del request HTTP dentro del 
+contexto de la aplicación Slim. Este siempre empezara con una barra oblicua; puede o puede no terminar con una barra oblicua.
 
 QUERY_STRING
-: The part of the HTTP request’s URI after, but not including, the “?”. This is required but may be an empty string.
+: La parte del request HTTP del URI después, pero no incluyendo, el “?”. Este es requerido pero puede ser un string vacío.
 
 SERVER_NAME
-: When combined with `SCRIPT_NAME` and `PATH_INFO`, this can be used to create a fully qualified URL to an application resource. However, if `HTTP_HOST` is present, that should be used instead of this. This is required and may never be an empty string.
+: Cuando es combinado con `SCRIPT_NAME` y `PATH_INFO`, este puede ser usado para crear un URL completamente calificado a un 
+recurso de la aplicación. Sin embargo, si `HTTP_HOST` esta presente, debe ser utilizado en lugar de este. Este es requerido y nunca 
+puede ser un string vacío.
 
 SERVER_PORT
-: When combined with `SCRIPT_NAME` and `PATH_INFO`, this can be used to create a fully qualified URL to any application resource. This is required and may never be an empty string.
+: Cuando es combinado con `SCRIPT_NAME` y `PATH_INFO`, este puede ser usado para crear un URL completamente calificado a un 
+recurso de la aplicación. Este es requerido y nunca puede ser un string vacío.
 
 HTTP_*
-: Variables matching the HTTP request headers sent by the client. The existence of these variables correspond with those sent in the current HTTP request.
+: Las variables que coinciden con las cabeceras del request HTTP enviadas por el cliente. La existencia de estas variables 
+corresponde con aquellas enviadas en el request HTTP actual.
 
 slim.url_scheme
-: Will be “http” or “https” depending on the HTTP request URL.
+: Será “http” o “https” dependiendo del URL del request HTTP.
 
 slim.input
-: Will be a string representing the raw HTTP request body. If the HTTP request body is empty (e.g. with a GET request), this will be an empty string.
+: Será un string representando el cuerpo puro del request HTTP. Si el cuerpo del request HTTP esta vacio (por ejemplo con un request GET), 
+este será un string vacio.
 
 slim.errors
-: Must always be a writable resource; by default, this is a write-only resource handle to `php://stderr`.
+: Debe ser siempre un recurso escribible; por defecto, este es un recurso de solo escritura manejado por `php://stderr`.
 
-The Slim application can store its own data in the environment, too. The environment array’s keys must contain at least
-one dot, and should be prefixed uniquely (e.g. “prefix.foo”). The prefix **slim.** is reserved for use by Slim itself
-and must not be used otherwise. The environment must not contain the keys `HTTP_CONTENT_TYPE` or `HTTP_CONTENT_LENGTH`
-(use the versions without HTTP_). The CGI keys (named without a period) must have String values. There are the
-following restrictions:
+La aplicación Slim puede almacenar sus propios datos en el ambiente también. Las claves del array del ambiente 
+deben contener por lo menos un punto, y deben tener un prefijo único (por ejemplo “prefix.foo”). El prefijo **slim.** esta 
+reservado para ser usado por Slim y no debe ser usado en cualquier otro caso. El ambiente no debe contener las claves 
+`HTTP_CONTENT_TYPE` o `HTTP_CONTENT_LENGTH` (usar las versiones sin HTTP_). Las claves CGI (nombradas sin un punto) deben 
+tener valores de tipo String. Existen las siguientes restricciones:
 
-* slim.url_scheme must either be “http” or “https”.
-* `slim.input` must be a string.
-* There must be a valid, writable resource in `slim.errors`.
-* The `REQUEST_METHOD` must be a valid token.
-* The `SCRIPT_NAME`, if non-empty, must start with "/"
-* The `PATH_INFO`, if non-empty, must start with "/"
-* The `CONTENT_LENGTH`, if given, must consist of digits only.
-* One of `SCRIPT_NAME` or `PATH_INFO` must be set. `PATH_INFO` should be "/" if `SCRIPT_NAME` is empty. `SCRIPT_NAME`
-  never should be "/", but instead be an empty string.
+* slim.url_scheme debe ser “http” o “https”.
+* `slim.input` debe ser un string.
+* Debe haber un recurso valido y escribible en `slim.errors`.
+* El `REQUEST_METHOD` debe ser un token valido.
+* El `SCRIPT_NAME`, si no esta vacío, debe empezar con "/"
+* El `PATH_INFO`, si no esta vacío, debe empezar con "/"
+* El `CONTENT_LENGTH`, si es usado, debe consistir solo de dígitos.
+* Alguno de `SCRIPT_NAME` o `PATH_INFO` debe ser colocado. `PATH_INFO` debería ser "/" si `SCRIPT_NAME` esta vacío. 
+`SCRIPT_NAME` nunca debe ser "/", sino ser un string vacío.
