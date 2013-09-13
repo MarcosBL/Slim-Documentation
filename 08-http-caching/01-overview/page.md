@@ -1,5 +1,5 @@
 ---
-title: Introducción al Cacheado HTTP
+title: Cacheado HTTP - Introducción
 status: live
 ---
 Una aplicación Slim ofrece soporte integrado para el almacenamiento en caché HTTP 
