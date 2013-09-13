@@ -43,7 +43,7 @@ Si una variable de ambiente no es encontrada, Slim buscará el modo en las opcio
 
 Si la variable de ambiente y la opción de configuración no son encontradas, Slim colocará el modo de la aplicación en “development”.
 
-### Configure for a Specific Mode
+### Configurar para un modo especifico
 
 Después de crear una instancia una aplicación Slim, puedes configurar la aplicación para un modo especifico 
 con el método de aplicación Slim `configureMode()`. Este método acepta dos argumentos: el nombre del modo objetivo 
