@@ -1,18 +1,19 @@
 ---
-title: Custom Views
+title: Vistas a medida
 status: live
 ---
 
-A Slim application delegates rendering of templates to its view object. A custom view is a subclass
-of `\Slim\View` that implements this interface:
+Una aplicación Slim delega el renderizado de plantillas a su objeto vista. Una vista
+a medida es una subclase de `\Slim\View` que implementa esta interfaz:
 
     <?php
     public render(string $template);
 
-The view object's `render` method must return the rendered content of the template specified by its
-`$template` argument. When the custom view’s render method is invoked, it is passed the desired template
-pathname (relative to the Slim application's “templates.path” setting) as its argument. Here's an example
-custom view:
+El método `render` del objeto vista debe devolver el contenido renderizado 
+de la plantilla especificada por su parámetro `$template`. Cuando se llama al 
+método render de una vista a medida, se le indica la ruta a plantilla deseada 
+(relativa a la configuración “templates.path” de la aplicación Slim) como parámetro. 
+Aquí tienes un ejemplo de vista a medida:
 
     <?php
     class CustomView extends \Slim\View
@@ -23,18 +24,19 @@ custom view:
         }
     }
 
-The custom view can do whatever it wants internally so long as it returns the template’s rendered output as a string.
-A custom view makes it easy to integrate popular PHP template systems like Twig or Smarty.
+La vista a medida puede hacer lo que quiera internamente mientras devuelva la 
+salida de la plantilla renderizada como cadena de texto. Una vista a medida hace 
+que sea sencillo integrar sistemas PHP de plantillas como Twig o Smarty.
 
 <div class="alert alert-info">
-    <strong>Heads Up!</strong> A custom view may access data passed to it by the Slim application’s
-    <code>render()</code> method with <code>$this->data</code>.
+    <strong>¡Atención!</strong> Una plantilla a medida puede acceder a los datos 
+	que le facilita el método <code>render()</code> de la aplicación Slim con 
+	<code>$this->data</code>.
 </div>
 
-You can browse ready-to-use custom views that work with popular PHP template engines in the Slim-Extras repository
-on GitHub.
+Puedes ojear vistas listas para su uso que trabajan con motores de plantillas PHP famosos en el repositorio de GitHub Slim-Extras.
 
-### Example View
+### Vista de Ejemplo
 
     <?php
     class CustomView extends \Slim\View
@@ -46,10 +48,10 @@ on GitHub.
         }
     }
 
-### Example Integration
+### Ejemplo de Integración
 
-If the custom view is not discoverable by a registered autoloader, it must be required before the Slim application
-is instantiated.
+Si la vista a medida no puede ser detectada por un autoloader registrado, 
+debemos requerirla antes de que la aplicación Slim se instancie.
 
     <?php
     require 'CustomView.php';

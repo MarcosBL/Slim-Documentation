@@ -1,13 +1,15 @@
 ---
-title: View Overview
+title: Introducción a las vistas
 status: live
 ---
 
-A Slim application delegates rendering of templates to its view object. A Slim application view is a subclass
-of `\Slim\View` that implements this interface:
+Una aplicación Slim delega el rendrrizado de plantillas a su objeto vista. 
+La vista de la aplicación Slim es una subclase de `\Slim\View` que implementa
+esta interfaz:
 
     <?php
     public render(string $template);
 
-The view object's `render` method must return the rendered content of the template specified by its
-`$template` argument.
+El método `render` del objeto vista devolverá el contenido renderizado de la 
+plantilla especificada por su argumento `$template`.
+ 
