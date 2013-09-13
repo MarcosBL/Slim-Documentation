@@ -1,27 +1,30 @@
 ---
-title: View Data
+title: Datos de la Vista
 status: live
 ---
 
 <div class="alert alert-info">
-    <strong>Heads Up!</strong> Rarely will you set or append data directly on the view object. Usually, you
-    pass data to the view with the Slim application's `render()` method.
-    See <a href="/pages/view-rendering-templates">Rendering Templates</a>.
+    <strong>¡Información!</strong> No será habitual que fijes o añadas datos
+	directamente al objeto vista. Por lo general, pasarás datos a la vista a través 
+	del método `render()` de la aplicación Slim.
+    Dale un ojo a <a href="/pages/view-rendering-templates">Renderizando Plantillas</a>.
 </div>
 
-The view object's `setData()` and `appendData()` methods inject data into the view object; the injected data is
-available to view templates. View data is stored internally as a key-value array.
+Los métodos del objeto vista `setData()` y `appendData()` inyectan datos 
+en el objeto vista; los datos inyectados estarán disponibles para las plantillas 
+de vista. Internamente, datos de la Vista se almacenan en un array clave-valor.
 
-### Setting Data
+### Asignando Datos
 
-The view object's `setData()` instance method will overwrite existing view data. You may use this method to set a
-single variable to a given value:
+El método de instancia `setData()` del objeto vista sobreescribirá los datos ya 
+existentes. Utilizaremos este método para asignar un solo valor a una sola variable:
 
     <?php
     $app->view->setData('color', 'red');
 
-The view’s data will now contain a key “color” with value “red”. You may also use the view’s `setData()` method
-to batch assign an entire array of data:
+Los datos de la vista contendrán ahora una clave “color” con el valor “red”. 
+También puedes utilizar el método de vista `setData()` para asignar un array 
+completo de datos de una sola vez:
 
     <?php
     $app->view->setData(array(
@@ -29,12 +32,12 @@ to batch assign an entire array of data:
         'size' => 'medium'
     ));
 
-Remember, the view’s `setData()` method will replace all previous data.
+Recuerda, el método `setData()` sobreescribirá los datos ya existentes.
 
-### Appending Data
+### Añadiendo Datos
 
-The view object also has a `appendData()` method that appends data to the view’s existing data. This method accepts
-an array as its one and only argument:
+El objeto vista también dispone de un método `appendData()` que añade datos 
+a los ya existentes en la vista. Este método acepta un array como único parámetro:
 
     <?php
     $app->view->appendData(array(
