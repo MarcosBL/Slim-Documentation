@@ -9,7 +9,7 @@ que es solicitada con el método HTTP GET.
     <?php
     $app = new \Slim\Slim();
     $app->get('/books/:id', function ($id) {
-        //Mostrar libro identificado por $id
+        //Mostrar libro identificado con $id
     });
 
 En este ejemplo, un request HTTP GET a “/books/1” invocará la función asociada, pasando “1” como 
