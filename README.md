@@ -23,10 +23,18 @@ To start a translation:
 2. Translate your GitHub repository fork;
 3. Send me a message when your translation is complete;
 
+### What to Translate
+
+Translate the content of each Markdown file, including the YAML front-matter
+`title` attribute. **Do not** translate folder or file names.
+
 ### Current Translations
 
 **Brazilian Portuguese (In Progress)**<br/>
 <https://github.com/batusa/Slim-Documentation/tree/translation-ptbr>
+
+**French (In Progress)**<br/>
+<https://github.com/quentin7b/Slim-Documentation>
 
 **German (In Progress)**<br/>
 <https://github.com/MMD-Coding/Slim-Documentation>
