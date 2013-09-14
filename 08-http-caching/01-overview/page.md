@@ -1,14 +1,18 @@
 ---
-title: HTTP Caching Overview
+title: Cacheado HTTP - Introducción
 status: live
 ---
+Una aplicación Slim ofrece soporte integrado para el almacenamiento en caché HTTP 
+con sus métodos de ayuda `etag()`, `lastModified()` y `expires()`. Lo mejor es 
+utilizar o bien `etag ()` o bien `lastModified ()` - en conjunción con `expires()` 
+- para cada ruta; Nunca debemos utilizar `etag()` y `lastModified()` juntos en el 
+mismo callback de una ruta.
 
-A Slim application provides built-in support for HTTP caching with its `etag()`, `lastModified()`, and `expires()`
-helper methods. It is best to use one of `etag()` or `lastModified()` - in conjunction with `expires()` - per route;
-never use both `etag()` and `lastModified()` together in the same route callback.
+Los métodos `etag()` y `lastModified()` deben ser invocados en el callback de la 
+ruta antes que cualquier otro código; esto permite a Slim comprobar peticiones GET 
+condicionales antes de procesar el código restante del callback de la ruta.
 
-The `etag()` and `lastModified()` methods should be invoked in a route callback before other code; this allows Slim
-to check conditional GET requests before processing the route callback’s remaining code.
-
-Both `etag()` and `lastModified()` instruct the HTTP client to store the resource response in a client-side cache.
-The `expires()` method indicates to the HTTP client when the client-side cache should be considered stale.
+Tanto `etag()` como `lastModified()` indican al cliente HTTP que almacene el 
+contenido de respuesta en la memoria caché del lado del cliente.
+El método `expires()` indica al cliente HTTP cuando la memoria del lado del 
+cliente debe ser considerada obsoleta.

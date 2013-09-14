@@ -1,5 +1,5 @@
 ---
-title: Introducción a las vistas
+title: Vistas - Introducción
 status: live
 ---
 
