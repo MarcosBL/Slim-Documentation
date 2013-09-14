@@ -1,4 +1,4 @@
 ---
-title: HTTP Caching
+title: Cacheado HTTP
 status: live
 ---
