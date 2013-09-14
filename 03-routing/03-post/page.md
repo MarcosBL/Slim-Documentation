@@ -1,20 +1,21 @@
 ---
-title: POST Routes
+title: Rutas POST
 status: live
 ---
 
-Use the Slim application's `post()` method to map a callback function to a resource URI that is requested with
-the HTTP POST method.
+Usa el método `post()` de la aplicación Slim para enlazar una función a una URL de recurso 
+que es solicitada con el método HTTP POST.
 
     <?php
     $app = new \Slim\Slim();
     $app->post('/books', function () {
-        //Create book
+        //Crear libro
     });
 
-In this example, an HTTP POST request for “/books” will invoke the associated callback function
+En este ejemplo, un request HTTP POST a “/books” invocará la función asociada.
 
-The first argument of the Slim application's `post()` method is the resource URI. The last argument is anything that
-returns `true` for `is_callable()`. Typically, the last argument will be an [anonymous function][anon-func].
+El primer argumento del método `post()` de la aplicación Slim es el URI del recurso. El ultimo argumento es 
+cualquier cosa que regrese `true` para `is_callable()`. Típicamente, el ultimo argumento sera una 
+[función anónima][anon-func].
 
-[anon-func]: http://php.net/manual/en/functions.anonymous.php
+[anon-func]: http://php.net/manual/es/functions.anonymous.php
