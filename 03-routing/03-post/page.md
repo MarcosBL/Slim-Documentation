@@ -15,7 +15,7 @@ que es solicitada con el método HTTP POST.
 En este ejemplo, un request HTTP POST a “/books” invocará la función asociada.
 
 El primer argumento del método `post()` de la aplicación Slim es el URI del recurso. El ultimo argumento es 
-cualquier cosa que regrese `true` para `is_callable()`. Típicamente, el ultimo argumento sera una 
+cualquier cosa que regrese `true` para `is_callable()`. Usualmente, el ultimo argumento sera una 
 [función anónima][anon-func].
 
 [anon-func]: http://php.net/manual/es/functions.anonymous.php

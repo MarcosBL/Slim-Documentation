@@ -16,7 +16,7 @@ En este ejemplo, un request HTTP GET a “/books/1” invocará la función asoc
 argumento.
 
 El primer argumento del método `get()` de la aplicación Slim es el URI del recurso. El ultimo argumento es 
-cualquier cosa que regrese `true` para `is_callable()`. Típicamente, el ultimo argumento sera una 
+cualquier cosa que regrese `true` para `is_callable()`. Usualmente, el ultimo argumento sera una 
 [función anónima][anon-func].
 
 [anon-func]: http://php.net/manual/es/functions.anonymous.php
