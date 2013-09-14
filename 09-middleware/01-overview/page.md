@@ -1,65 +1,74 @@
 ---
-title: Middleware Overview
+title: Middleware - Introducción
 status: live
 ---
 
-The Slim Framework implements a version of the Rack protocol. As a result, a Slim application can have middleware
-that may inspect, analyze, or modify the application environment, request, and response before and/or after the
-Slim application is invoked.
+El Framework Slim implementa una versión del protocolo Rack. Por tanto, una 
+aplicación Slim puede tener middleware que puede inspeccionar, analizar, o 
+modificar el embiente de la aplicación, sus peticiones, y respuestas antes y/o 
+después de que la aplicación Slim haya sido instanciada.
 
-### Middleware Architecture
+### Arquitectura del Middleware
 
-Think of a Slim application as the core of an onion. Each layer of the onion is middleware. When you invoke the
-Slim application’s `run()` method, the outer-most middleware layer is invoked first. When ready, that middleware
-layer is responsible for optionally invoking the next middleware layer that it surrounds. This process steps deeper
-into the onion - through each middleware layer - until the core Slim application is invoked. This stepped process
-is possible because each middleware layer, and the Slim application itself, all implement a public `call()` method.
-When you add new middleware to a Slim application, the added middleware will become a new outer layer and surround
-the previous outer middleware layer (if available) or the Slim application itself.
+Piensa en la aplicación Slim como el núcleo de una cebolla. Cada capa de la 
+cebolla es un middleware. Cuando llamas al método `run()` de la aplicación Slim, 
+la capa más externa de middleware se ejecuta en primer lugar. Cuando está lista, 
+dicha capa de middleware es la responsable de llamar a la siguiente capa middleware 
+a la que rodea. Este proceso profundiza cada vez más en la cebolla - a través de 
+cada capa de middleware - hasta que se llega al núcleo de la aplicación Slim. Este 
+proceso por pasos es posible gracias a que cada capa de middleware, y la propia 
+aplicación Slim, implementan un método público `call()`.
+Cuando añades nuevo middleware a una aplicación Slim, el middleware añadido se 
+convierte en una nueva capa externa y rodea la capa externa previa (si hay alguna) 
+o a la propia aplicación Slim.
 
-### Application Reference
+### Referencia de la Aplicación
 
-The purpose of middleware is to inspect, analyze, or modify the application environment, request, and response
-before and/or after the Slim application is invoked. It is easy for each middleware to obtain references to the
-primary Slim application, its environment, its request, and its response:
+La finalidad del middleware es inspeccionar, analizar, o modificar el ambiente de 
+la aplicación, sus peticiones, y respuesta antes y/o después de la llamada a la 
+aplicación Slim. Para cada middleware es sencillo el obtener referencias a la aplicación 
+Slim primaria para descubrir su ambiente, peticiones, y respuesta:
 
     <?php
     class MyMiddleware extends \Slim\Middleware
     {
         public function call()
         {
-            //The Slim application
+            //La aplicación Slim
             $app = $this->app;
 
-            //The Environment object
+            //El objeto Ambiente
             $env = $app->environment;
 
-            //The Request object
+            //El objeto Petición
             $req = $app->request;
 
-            //The Response object
+            //El objeto Respuesta
             $res = $app->response;
         }
     }
 
-Changes made to the environment, request, and response objects will propagate immediately throughout the application
-and its other middleware layers. This is possible because every middleware layer is given a reference to the same
-Slim application object.
+Los cambios realizados a los objetos ambiente, peticiones y respuesta se propagarán 
+inmediatamente a través de la aplicación y sus capas de middleware. Esto es posible 
+porque cada capa de middleware recibe una referencia al mismo objeto de aplicación 
+Slim.
 
-### Next Middleware Reference
+### Referencia al Siguiente Middleware
 
-Each middleware layer also has a reference to the next inner middleware layer with `$this->next`. It is each
-middleware’s responsibility to optionally call the next middleware. Doing so will allow the Slim application
-to complete its full lifecycle. If a middleware layer chooses **not** to call the next inner middleware layer,
-further inner middleware and the Slim application itself will not be run, and the application response will
-be returned to the HTTP client as is.
+Cada capa de middleware dispone además de una referencia a la siguiente capa interna 
+de middleware con `$this->next`. Es responsabilidad de cada middleware el invocar 
+o no al siguiente middleware. De esta forma, permitimos a la aplicación Slim el 
+completar su ciclo de vida. Si una capa de middleware decide **no** invocar a la 
+siguiente capa, el siguiente middleware interno y la propia aplicación Slim no se 
+ejecutarán, y la respuesta actual de la aplicación se enviará al cliente HTTP tal 
+cual esté.
 
     <?php
     class MyMiddleware extends \Slim\Middleware
     {
         public function call()
         {
-            //Optionally call the next middleware
+            //Es opcional el invocar al siguiente middleware
             $this->next->call();
         }
     }
