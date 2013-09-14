@@ -1,11 +1,12 @@
 ---
-title: Route Names
+title: Nombres de Ruta
 status: live
 ---
 
-Slim lets you assign a name to a route. Naming a route enables you to dynamically generate URLs using the urlFor
-helper method. When you use the Slim application's `urlFor()` method to create application URLs, you can freely
-change route patterns without breaking your application. Here is an example of a named route:
+Slim te permite asignar un nombre a una ruta. Nombrar una ruta te permite generar URLs dinámicos usando 
+el método de ayuda `urlFor()`. Cuando usas el método `urlFor()` de la aplicación Slim para crear URLs, 
+puedes cambiar los patrones de la ruta libremente sin romper tu aplicación. Este es un ejemplo de una 
+ruta con nombre:
 
     <?php
     $app = new \Slim\Slim();
@@ -13,8 +14,8 @@ change route patterns without breaking your application. Here is an example of a
         echo "Hello, $name!";
     })->name('hello');
 
-You may now generate URLs for this route using the `urlFor()` method, described later in this documentation.
-The route `name()` method is also chainable:
+Ahora puedes generar URLs para esta ruta usando el método `urlFor()`, descrito mas adelante en esta documentación. 
+El método `name()` de la ruta también es enlazable:
 
     <?php
     $app = new \Slim\Slim();
