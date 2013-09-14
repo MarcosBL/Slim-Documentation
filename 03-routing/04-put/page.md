@@ -1,5 +1,5 @@
 ---
-title: PUT Routes
+title: Rutas PUT
 status: live
 ---
 
