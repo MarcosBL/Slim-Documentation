@@ -1,10 +1,11 @@
 ---
-title: Flash Next
+title: Flash en la Siguiente
 status: live
 ---
 
-The Slim application’s `flash()` method sets a message that will be available in the next request’s view templates.
-The message in this example will be available in the template variable `flash['error']`.
+El método `flash()` de la aplicación Slim fija un mensaje que estará disponible 
+en las plantillas de vista de la siguiente petición.
+El mensaje de este ejemplo estará disponible en la variable de plantilla `flash['error']`.
 
     <?php
-    $app->flash('error', 'User email is required');
+    $app->flash('error', 'El email del usuario es obligatorio');

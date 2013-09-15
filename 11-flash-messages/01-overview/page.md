@@ -1,22 +1,27 @@
 ---
-title: Flash Messaging Overview
+title: Mensajes Flash - Introducción
 status: live
 ---
 
 <div class="alert alert-info">
-    <strong>Heads Up!</strong> Flash messages require sessions. If you do not use the
-    <code>\Slim\Middleware\SessionCookie</code> middleware, you must start a native PHP session yourself.
+    <strong>¡Información!</strong> Los mensajes Flash requieren el uso de sesiones. 
+	si no utilizas el middleware <code>\Slim\Middleware\SessionCookie</code>, deberás 
+	iniciar una sesión nativa de PHP por ti mismo.
 </div>
 
-Slim supports flash messaging much like Rails and other larger web frameworks. Flash messaging allows you to define
-messages that will persist until the next HTTP request but no further. This is helpful to display messages to the user
-after a given event or error occurs.
+Slim soporta mensajería Flash tal como Rails y otros frameworks web mayores. La 
+mensajería Flash te permite definir mensajes que persistirán hasta la siguiente 
+petición HTTP, pero no más allá. Esto es útil para mostrar mensajes al usuario 
+tras un determinado evento o error.
 
-As shown below, the Slim application’s `flash()` and `flashNow()` methods accept two arguments: a key and a message.
-The key may be whatever you want and defines how the message will be accessed in the view templates. For example,
-if I invoke the Slim application’s `flash('foo', 'The foo message')` method with those arguments, I can access that
-message in the next request’s templates with `flash['foo']`.
+Como veremos más adelante, los métodos `flash()` y `flashNow()` de una aplicación 
+Slim aceptan dos parámetros: una clave y un mensaje.
+La clave puede ser cualquier cosa que quieras y define cómo se accederá al mensaje 
+en las plantillas de vista. Por ejemplo, si invoco el método `flash('foo', 'El mensaje foo')` 
+con esos parámetros, podré acceder a dicho mensaje en las plantillas de la siguiente 
+petición con `flash['foo']`.
 
-Flash messages are persisted with sessions; sessions are required for flash messages to work. Flash messages are
-stored in `$_SESSION['slim.flash']`.
+Los mensajes Flash se mantienen con el uso de sesiones; las sesiones son obligatorias 
+para que dichos mensajes Flash puedan funcionar. Los mensajes Flash se almacenan 
+en `$_SESSION['slim.flash']`.
 
