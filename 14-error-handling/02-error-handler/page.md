@@ -5,7 +5,7 @@ status: live
 
 Puedes usar el método `error()` de la aplicación Slim para especificar un manejador de errores 
 personalizado para ser invocado cuando un error o excepción ocurre. Los manejadores de errores 
-personalizados solo son invocados si el debugging de la aplicación esta deshabilitados.
+personalizados solo son invocados si el depuramiento de la aplicación esta deshabilitado.
 
 Un manejador de errores personalizado debería mostrar un mensaje amigable para usuarios que mitigue 
 confusiones. Similar al método `notFound()` de la aplicación Slim, el método `error()` actúa tanto como 
