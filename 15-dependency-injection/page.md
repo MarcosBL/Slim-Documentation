@@ -1,4 +1,4 @@
 ---
-title: Dependency Injection
+title: Inyección de Dependencia
 status: live
 ---

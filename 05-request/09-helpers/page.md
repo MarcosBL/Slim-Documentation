@@ -1,45 +1,45 @@
 ---
-title: Request Helpers
+title: Métodos de ayuda del Request
 status: live
 ---
 
-The Slim application's request object provides several helper methods to fetch common HTTP request information:
+El objeto request de la aplicación Slim provee varios métodos de ayuda para obtener información HTTP comun:
 
-### Content Type
+### Tipo de Contenido
 
-Fetch the request's content type (e.g. "application/json;charset=utf-8"):
+Obtener el tipo de contenido del request (por ejemplo "application/json;charset=utf-8"):
 
     <?php
     $req = $app->request;
     $req->getContentType();
 
-### Media Type
+### Tipo de Media
 
-Fetch the request's media type (e.g. "application/json"):
+Obtener el tipo de media del request (por ejemplo "application/json"):
 
     <?php
     $req = $app->request;
     $req->getMediaType();
 
-### Media Type Params
+### Parámetros del Tipo de Media
 
-Fetch the request's media type parameters (e.g. [charset => "utf-8"]):
+Obtener los parámetros del tipo de media del request (por ejemplo [charset => "utf-8"]):
 
     <?php
     $req = $app->request;
     $req->getMediaTypeParams();
 
-### Content Charset
+### Charset del Contenido
 
-Fetch the request's content character set (e.g. "utf-8"):
+Obtener el character set del contenido del request (por ejemplo "utf-8"):
 
     <?php
     $req = $app->request;
     $req->getContentCharset();
 
-### Content Length
+### Longitud del Contenido
 
-Fetch the request's content length:
+Obtener la longitud del contenido del request:
 
     <?php
     $req = $app->request;
@@ -47,39 +47,39 @@ Fetch the request's content length:
 
 ### Host
 
-Fetch the request's host (e.g. "slimframework.com"):
+Obtener el host del request (por ejemplo "slimframework.com"):
 
     <?php
     $req = $app->request;
     $req->getHost();
 
-### Host with Port
+### Host con Puerto
 
-Fetch the request's host with port (e.g. "slimframework.com:80"):
+Obtener el host del request con el puerto (por ejemplo "slimframework.com:80"):
 
     <?php
     $req = $app->request;
     $req->getHostWithPort();
 
-### Port
+### Puerto
 
-Fetch the request's port (e.g. 80):
+Obtener el puerto del request (por ejemplo 80):
 
     <?php
     $req = $app->request;
     $req->getPort();
 
-### Scheme
+### Esquema
 
-Fetch the request's scheme (e.g. "http" or "https"):
+Obtener el esquema del request (por ejemplo "http" o "https"):
 
     <?php
     $req = $app->request;
     $req->getScheme();
 
-### Path
+### Ruta
 
-Fetch the request's path (root URI + resource URI):
+Obtener la ruta del request (URI raíz + URI del recurso):
 
     <?php
     $req = $app->request;
@@ -87,23 +87,23 @@ Fetch the request's path (root URI + resource URI):
 
 ### URL
 
-Fetch the request's URL (scheme + host [ + port if non-standard ]):
+Obtener el URL del request (esquema + host [ + puerto si no es estandar ]):
 
     <?php
     $req = $app->request;
     $req->getUrl();
 
-### IP Address
+### Dirección IP
 
-Fetch the request's IP address:
+Obtener la dirección IP del request:
 
     <?php
     $req = $app->request;
     $req->getIp();
 
-### Referer
+### Referidor
 
-Fetch the request's referrer:
+Obtener el referidor del request:
 
     <?php
     $req = $app->request;
@@ -111,7 +111,7 @@ Fetch the request's referrer:
 
 ### User Agent
 
-Fetch the request's user agent string:
+Obtener el user agent del request como string:
 
     <?php
     $req = $app->request;

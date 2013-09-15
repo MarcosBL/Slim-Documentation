@@ -1,46 +1,46 @@
 ---
-title: Route Parameters
+title: Parámetros de Ruta
 status: live
 ---
 
-You can embed parameters into route resource URIs. In this example, I have two parameters in my
-route URI, “:one” and “:two”.
+Puedes utilizar parametros en las URIs de recurso de las rutas. En este ejemplo, existen dos 
+parametros en el URI de la ruta, “:one” y “:two”.
 
     <?php
     $app = new \Slim\Slim();
     $app->get('/books/:one/:two', function ($one, $two) {
-        echo "The first paramter is " . $one;
+        echo "The first parameter is " . $one;
         echo "The second parameter is " . $two;
     });
 
-To create a URL parameter, prepend “:” to the parameter name in the route URI pattern. When the route matches the
-current HTTP request, the values for each route parameter are extracted from the HTTP request URI and are passed
-into the associated callback function in order of appearance.
+Para crear un parámetro URL, coloca “:” al principio del nombre del parámetro en el patrón del URI 
+de la ruta. Cuando la ruta coincida con el request HTTP actual, los valores de cada parámetro son extraídos 
+del request HTTP y pasados en orden a la función asociada.
 
-### Wildcard route parameters
+### Comodines en parámetros de ruta
 
-You may also use wildcard route parameters. These will capture one or many URI segments that correspond to the route
-pattern’s wildcard parameter into an array. A wildcard parameter is identified by a “+” suffix; it otherwise acts
-the same as normal route parameters shown above. Here’s an example:
+Puedes usar comodines en los parámetros de la ruta. Estos capturaran uno o varios segmentos del URI que 
+correspondan al patrón del comodín de la ruta en un array. Un parámetro comodín este identificado con un 
+sufijo “+”; de otra manera actúa igual que un parámetro normal de ruta mostrado arriba. Aquí esta un ejemplo:
 
     <?php
     $app = new \Slim\Slim();
     $app->get('/hello/:name+', function ($name) {
-        // Do something
+        // Hacer algo
     });
 
-When you invoke this example application with a resource URI “/hello/Josh/T/Lockhart”, the route callback’s `$name`
-argument will be equal to `array('Josh', 'T', Lockhart')`.
+Cuando invocas esta aplicación ejemplo con el URI de recurso “/hello/Josh/T/Lockhart”, el argumento `$name` de 
+la función de la ruta sera igual a `array('Josh', 'T', Lockhart')`.
 
-### Optional route parameters
+### Parametros de ruta opcionales
 
 <div class="alert alert-warning">
-    <strong>Heads Up!</strong> Optional route segments are experimental. They should only be used
-    in the manor demonstrated below.
+    <strong>Importante!</strong> Los segmentos de ruta opcionales son experimentales. Solo deberían ser usados 
+    en la manera mostrada abajo.
 </div>
 
-You may also have optional route parameters. These are ideal for using one route for a blog archive. To declare
-optional route parameters, specify your route pattern like this:
+Puedes usar también parámetro de ruta opcionales. Estos son ideales para usar en un archivo de un blog. Para 
+declarar parámetros de ruta opcionales, especifica el patrón de la ruta así:
 
     <?php
     $app = new Slim();
@@ -48,15 +48,16 @@ optional route parameters, specify your route pattern like this:
         echo sprintf('%s-%s-%s', $year, $month, $day);
     });
 
-Each subsequent route segment is optional. This route will accept HTTP requests for:
+Cada segmento de ruta subsecuente es opcional. Esta ruta aceptara request HTTP para:
 
 * /archive
 * /archive/2010
 * /archive/2010/12
 * /archive/2010/12/05
 
-If an optional route segment is omitted from the HTTP request, the default values in the callback signature are
-used instead.
+Si un segmento de ruta opcional es omitido del request HTTP, los valores por defecto en los argumentos de la 
+función serán usados en su lugar.
 
-Currently, you can only use optional route segments in situations like the example above where each route segment is
-subsequently optional. You may find this feature unstable when used in scenarios different from the example above.
+Actualmente, solo puedes usar segmentos de ruta opcionales en situaciones como en el ejemplo de arriba donde 
+cada segmento de ruta subsecuente es opcional. Puedes encontrar esta característica inestable cuando es usada 
+en escenarios diferentes al del ejemplo de arriba.

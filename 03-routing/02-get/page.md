@@ -1,21 +1,22 @@
 ---
-title: GET Routes
+title: Rutas GET
 status: live
 ---
 
-Use the Slim application's `get()` method to map a callback function to a resource URI that is requested with
-the HTTP GET method.
+Usa el método `get()` de la aplicación Slim para enlazar una función a una URL de recurso 
+que es solicitada con el método HTTP GET.
 
     <?php
     $app = new \Slim\Slim();
     $app->get('/books/:id', function ($id) {
-        //Show book identified by $id
+        //Mostrar libro identificado con $id
     });
 
-In this example, an HTTP GET request for “/books/1” will invoke the associated callback function, passing “1” as the
-callback's argument.
+En este ejemplo, un request HTTP GET a “/books/1” invocará la función asociada, pasando “1” como 
+argumento.
 
-The first argument of the Slim application's `get()` method is the resource URI. The last argument is anything that
-returns `true` for `is_callable()`. Typically, the last argument will be an [anonymous function][anon-func].
+El primer argumento del método `get()` de la aplicación Slim es el URI del recurso. El ultimo argumento es 
+cualquier cosa que regrese `true` para `is_callable()`. Usualmente, el ultimo argumento sera una 
+[función anónima][anon-func].
 
-[anon-func]: http://php.net/manual/en/functions.anonymous.php
+[anon-func]: http://php.net/manual/es/functions.anonymous.php

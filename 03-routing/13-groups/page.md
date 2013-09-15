@@ -1,32 +1,32 @@
 ---
-title: Route Groups
+title: Grupos de Ruta
 status: live
 ---
 
-Slim lets you group related routes. This is helpful when you find yourself repeating the same URL segments
-for multiple routes. This is best explained with an example. Let's pretend we are building an API for
-books.
+Slim te permite agrupar rutas relacionadas. Esto es útil cuando te encuentras repitiendo los mismos 
+segmentos de URL para múltiples rutas. Esto es mejor explicado con un ejemplo. Pretendamos que estamos 
+construyendo un API para libros.
 
     <?php
     $app = new \Slim\Slim();
 
-    // API group
+    // Grupo API
     $app->group('/api', function () use ($app) {
 
-        // Library group
+        // Grupo Library
         $app->group('/library', function () use ($app) {
 
-            // Get book with ID
+            // Obtener libro con ID
             $app->get('/books/:id', function ($id) {
 
             });
 
-            // Update book with ID
+            // Actualizar libro con ID
             $app->put('/books/:id', function ($id) {
 
             });
 
-            // Delete book with ID
+            // Borrar libro con ID
             $app->delete('/books/:id', function ($id) {
 
             });
@@ -35,11 +35,11 @@ books.
 
     });
 
-The routes defined above would be accessible at, respectively:
+Las rutas definidas arriba sera accesibles respectivamente en:
 
     GET    /api/library/books/:id
     PUT    /api/library/books/:id
     DELETE /api/library/books/:id
 
-Route groups are very useful to group related routes and avoid repeating common URL segments
-for each route definition.
+Los grupos de ruta son muy útiles para agrupar rutas relacionadas y evitar repetir segmentos 
+URL comunes en cada definición de ruta.

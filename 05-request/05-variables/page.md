@@ -1,34 +1,35 @@
 ---
-title: Request Variables
+title: Variables de Request
 status: live
 ---
 
-An HTTP request may have associated variables (not to be confused with route variables). The GET, POST, or PUT
-variables sent with the current HTTP request are exposed via the Slim application’s request object.
+Un request HTTP puede tener variables asociadas (no confundir con variables de rute). Las variables 
+GET, POST o PUT enviadas con el request HTTP actual son expuestas a través del objeto request de 
+la aplicación Slim.
 
-If you want to quickly fetch a request variable value without considering its type, use the request object's `params()`
-method:
+Si quieres leer rápidamente una variable de request sin considerar su topo, puedes usar el método `params()` 
+del objeto request:
 
     <?php
     $app = new \Slim\Slim();
     $paramValue = $app->request->params('paramName');
 
-The `params()` method will first search PUT variables, then POST variables, then GET variables. If no variables
-are found, `null` is returned. If you only want to search for a specific type of variable, you can use these
-methods instead:
+El método `params()` primero intentara buscar variables PUT, luego variables POST y después variables GET. 
+Si no consigue variables regresara `null`. Si solo quieres buscar por un tipo especifico de variable, puedes usar 
+uno de estos métodos en su lugar:
 
     <?php
-    //GET variable
+    //Variable GET
     $paramValue = $app->request->get('paramName');
 
-    //POST variable
+    //Variable POST
     $paramValue = $app->request->post('paramName');
 
-    //PUT variable
+    //Variable PUT
     $paramValue = $app->request->put('paramName');
 
-If a variable does not exist, each method above will return `null`. You can also invoke any of these functions without
-an argument to obtain an array of all variables of the given type:
+Si una variable no existe, cada método de arriba va a devolver `null`. También puedes invocar cualquiera de estas 
+funciones sin el argumento para obtener un array de todas las variables de un mismo tipo:
 
     <?php
     $allGetVars = $app->request->get();

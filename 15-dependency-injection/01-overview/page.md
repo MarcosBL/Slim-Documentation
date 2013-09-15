@@ -1,66 +1,68 @@
 ---
-title: DI Overview
+title: Inyección de Dependencia - Introducción
 status: live
 ---
 
-Slim has a built-in resource locator, providing an easy way to inject objects into a Slim app, or
-to override any of the Slim app's internal objects (e.g. Request, Response, Log).
+Slim tiene un localizador de recursos integrado que provee una manera fácil de inyectar objetos 
+en una aplicación Slim, o para sobrecargar cualquiera de los objetos internos de una aplicación 
+Slim (por ejemplo Request, Response, Log).)
 
-## Injecting simple values
+## Inyectar valores simples
 
-If you want to use Slim as a simple key-value store, it is as simple as this:
+Si quieres usar Slim simplemente como un almacenador de clave-valor, es tan simple como esto:
 
     <?php
     $app = new \Slim\Slim();
     $app->foo = 'bar';
 
-Now, you can fetch this value anywhere with `$app->foo` and get its value `bar`.
+Ahora puedes obtener este valor en cualquier lado con `$app->foo` y recibir su valor `bar`.
 
-## Using the resource locator
+## Usando el localizador de recursos
 
-You can also use Slim as a resource locator by injecting closures that define how
-your desired objects will be constructed. When the injected closure is requested, it will
-be invoked and the closure's return value will be returned.
+También puedes usar Slim como un localizador de recursos inyectando funciones que definan como 
+serán construidos tus objetos deseados. Cuando la función inyectada es solicitada, sera invocada 
+y su valor devuelto sera regresado.
 
     <?php
     $app = new \Slim\Slim();
 
-    // Determine method to create UUIDs
+    // Determina metodo para crear UUIDs
     $app->uuid = function () {
         return exec('uuidgen');
     };
 
-    // Get a new UUID
+    // Obtener nuevo UUID
     $uuid = $app->uuid;
 
-### Singleton resources
+### Recursos singulares
 
-Sometimes, you may want your resource definitions to stay the same each time they are requested
-(i.e. they should be singletons within the scope of the Slim app). This is easy to do:
+Algunas veces, puedes necesitar que tus definiciones de recursos se mantengan iguales cada vez 
+que son solicitadas (por ejemplo deben ser singulares dentro del alcance de la aplicación Slim). 
+Esta es una manera fácil de hacerlo:
 
     <?php
     $app = new \Slim\Slim();
 
-    // Define log resource
+    // Definir recurso log
     $app->container->singleton('log', function () {
         return new \My\Custom\Log();
     });
 
-    // Get log resource
+    // Obtener recurso log
     $log = $app->log;
 
-Every time you request the log resource with `$app->log`, it will return the same instance.
+Cada vez que solicites el recurso log con `$app->log`, este regresara la misma instancia.
 
-### Closure resources
+### Recursos de cierre
 
-What if you want to literally store a closure as the raw value and not have it invoked? You can do that
-like this:
+¿Que si quieres almacenar literalmente una función como valor puro y no hacer que sea invocada? Puedes 
+hacerlo de esta manera:
 
     <?php
     $app = new \Slim\Slim();
 
-    // Define closure
+    // Definir función
     $app->myClosure = $app->container->protect(function () {});
 
-    // Return raw closure without invoking it
+    // Regresa función pura sin invocarla
     $myClosure = $app->myClosure;

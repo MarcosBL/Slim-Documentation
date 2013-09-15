@@ -1,11 +1,11 @@
 ---
-title: Routing Overview
+title: Enrutador - Introducción
 status: live
 ---
 
-The Slim Framework helps you map resource URIs to callback functions for specific HTTP request methods
-(e.g. GET, POST, PUT, DELETE, OPTIONS or HEAD). A Slim application will invoke the first route that matches the
-current HTTP request’s URI and method.
+Slim Framework te ayuda a enlazar URIs de recursos a funciones de callback para métodos específicos 
+de request HTTP (por ejemplo GET, POST, PUT, DELETE, OPTIONS o HEAD). Una aplicación Slim invocara la primera ruta 
+que coincida con el URI y método del request HTTP actual.
 
-If the Slim application does not find routes with URIs that match the HTTP request URI and method, it will
-automatically return a **404 Not Found** response.
+Si la aplicación Slim no consigue rutas con URIs que coincidan con el URI y método del request HTTP, regresara 
+automáticamente una respuesta **404 Not Found**.

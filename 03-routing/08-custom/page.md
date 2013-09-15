@@ -1,13 +1,14 @@
 ---
-title: Custom HTTP Methods
+title: Métodos HTTP Personalizados
 status: live
 ---
 
-### One route, multiple HTTP methods
+### Una ruta, múltiples métodos HTTP
 
-Sometimes you may need a route to respond to multiple HTTP methods; sometimes you may need a route to respond to a
-custom HTTP method. You can accomplish both with the Route object's `via()` method. This example demonstrates how
-to map a resource URI to a callback that responds to multiple HTTP methods.
+Algunas veces puedes necesitar que na ruta responda a múltiples métodos HTTP; algunas veces 
+puedes necesitar que una ruta responda a un métodos HTTP personalizado. Puedes lograr ambas 
+con el método `via()` del objeto Route. Este ejemplo demuestra como enlazar un URI del 
+recurso a una función que responde a múltiples métodos HTTP.
 
     <?php
     $app = new \Slim\Slim();
@@ -16,9 +17,10 @@ to map a resource URI to a callback that responds to multiple HTTP methods.
     })->via('GET', 'POST');
     $app->run();
 
-The route defined in this example will respond to both GET and POST requests for the resource identified by “/foo/bar”.
-Specify each appropriate HTTP method as a separate string argument to the Route object's `via()` method. Like other
-Route methods (e.g. `name()` and `conditions()`), the `via()` method is chainable:
+La ruta definida en este ejemplo responderá a requests GET y POST del recurso identificado 
+como “/foo/bar”. Especifica cada método HTTP apropiado como argumentos string separados en 
+el método `via()` del objeto Request. Como otros métodos del enrutador (por ejemplo 
+`name()` y `conditions()`), el método `via()` es enlazable:
 
     <?php
     $app = new \Slim\Slim();
@@ -27,11 +29,12 @@ Route methods (e.g. `name()` and `conditions()`), the `via()` method is chainabl
     })->via('GET', 'POST')->name('foo');
     $app->run();
 
-### One route, custom http methods
+### Una ruta, métodos HTTP personalizados
 
-The Route object's `via()` method is not limited to just GET, POST, PUT, DELETE, and OPTIONS methods. You may also
-specify your own custom HTTP methods (e.g. if you were responding to WebDAV HTTP requests). You can define a route
-that responds to a custom “FOO” HTTP method like this:
+El método `via()` del objeto Route no esta limitado a solo métodos GET, POST, PUT, DELETE y OPTIONS. 
+Puedes también usar tus propios métodos HTTP personalizados (por ejemplo si estuvieras respondiendo 
+a request HTTP WebDAV). Puedes definir una ruta que responda a un método HTTP personalizado “FOO” 
+de esta manera:
 
     <?php
     $app = new \Slim\Slim();

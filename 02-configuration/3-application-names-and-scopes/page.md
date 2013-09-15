@@ -1,29 +1,30 @@
 ---
-title: Application Names and Scopes
+title: Nombres y Alcances de la Aplicación
 status: live
 ---
 
-When you build a Slim application you will enter various scopes in your code (e.g. global scope and function scope).
-You will likely need a reference to your Slim application in each scope. There are several ways to do this:
+Cuando creas una aplicación Slim deberás usar varios alcances en tu código (por ejemplo alcance global y alcance de función). 
+Probablemente necesites una referencia a tu aplicación Slim en cada alcance. Existen varias maneras de hacer esto:
 
-* Use application names with the Slim application's `getInstance()` static method
-* Curry an application instance into function scope with the `use` keyword
+* Usa nombres de aplicación con el método estático `getInstance()` de la aplicación Slim
+* Pasa una instancia de la aplicación al alcance de función con la palabra clave `use` (Currying)
 
-### Application Names
+### Nombres de Aplicación
 
-Every Slim application may be given a name. **This is optional**. Names help you get a reference to a Slim
-application instance in any scope throughout your code. Here is how you set and get an application’s name:
+Cada aplicación Slim puede tener un nombre determinado. **Esto es opcional**. Los nombres te ayudan 
+a obtener una referencia a una instancia de la aplicación Slim en cualquier alcance dentro de tu código. 
+Así es como puedes colocar y obtener un nombre de aplicación:
 
     <?php
     $app = new \Slim\Slim();
     $app->setName('foo');
     $name = $app->getName(); // "foo"
 
-### Scope Resolution
+### Resolución de Alcance
 
-So how do you get a reference to your Slim application? The example below demonstrates how to obtain a reference
-to a Slim application within a route callback function. The `$app` variable is used in the global scope to define
-the HTTP GET route. But the `$app` variable is also needed within the route’s callback scope to render a template.
+Así que, ¿cómo obtienes una referencia a tu aplicación Slim? El ejemplo de abajo demuestra como obtener una referencia 
+a una aplicación Slim dentro de una función de callback de una ruta. La variable `$app` es usada en el alcance global para 
+definir la ruta HTTP GET. Pero la variable `$app` también se necesita dentro del alcance del callback para mostrar una plantilla.
 
     <?php
     $app = new \Slim\Slim();
@@ -31,21 +32,21 @@ the HTTP GET route. But the `$app` variable is also needed within the route’s 
         $app->render('foo.php'); // <-- ERROR
     });
 
-This example fails because the `$app` variable is unavailable inside the route callback function.
+Este ejemplo falla porque la variable `$app` no esta disponible dentro de la función callback de la ruta.
 
 #### Currying
 
-We can inject the `$app` variable into the callback function with the `use` keyword:
+Podemos inyectar la variable `$app` en la función de callback usando la palabra clave `use`:
 
     <?php
     $app = new \Slim\Slim();
     $app->get('/foo', function () use ($app) {
-        $app->render('foo.php'); // <-- SUCCESS
+        $app->render('foo.php'); // <-- EXITO
     });
 
-#### Fetch by Name
+#### Obtener por el Nombre
 
-You can use the Slim application's `getInstance()` static method, too:
+También puedes usar el método estático `getInstance()` de la aplicación Slim:
 
     <?php
     $app = new \Slim\Slim();

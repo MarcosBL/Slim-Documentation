@@ -1,33 +1,34 @@
 ---
-title: Route Middleware
+title: Middleware de Ruta
 status: live
 ---
 
-Slim enables you to associate middleware with a specific application route. When the given route matches the current
-HTTP request and is invoked, Slim will first invoke the associated middleware in the order they are defined.
+Slim te permite asociar un middleware con una rute de aplicación especifica. Cuando la ruta dada coincide con 
+el request HTTP actual y es invocada, Slim invocara primero el middleware asociado en el orden en el que 
+son definidos.
 
-### What is route middleware?
+### ¿Que es un middleware de ruta?
 
-Route middleware is anything that returns `true` for `is_callable`. Route middleware will be invoked in the sequence
-defined before its related route callback is invoked.
+Un middleware de ruta es cualquier cosa que regrese `true` para `is_callable`. Los middleware de ruta sera invocados 
+in la secuencia en que fueron definidos antes que su ruta relacionada sea invocada.
 
-### How do I add route middleware?
+### ¿Como agrego un middleware de ruta?
 
-When you define a new application route with the Slim application’s `get()`, `post()`, `put()`, or `delete()` methods
-you must define a route pattern and a callable to be invoked when the route matches an HTTP request.
+Cuando defines una nueva ruta de aplicación con los métodos `get()`, `post()`, `put()`, o `delete()` de la aplicación 
+Slim debes definir un patrón de ruta y una función para ser invocada cuando la ruta coincide con el request HTTP.
 
     <?php
     $app = new \Slim\Slim();
     $app->get('/foo', function () {
-        //Do something
+        //Hacer algo
     });
 
-In the example above, the first argument is the route pattern. The last argument is the callable to be invoked when
-the route matches the current HTTP request. The route pattern must always be the first argument. The route callable
-must always be the last argument.
+En el ejemplo de arriba, el primer argumento es el patrón de la ruta. El ultimo argumento es una función a ser 
+invocada cuando la ruta coincida con el request HTTP actual. El patrón de la ruta siempre debe ser el primer argumento. 
+La función de la ruta siempre debe ser el ultimo argumento.
 
-You can assign middleware to this route by passing each middleware as a separate interior or... (ahem) middle...
-argument like this:
+Puedes asignar el middleware a esta ruta pasando cada middleware en el interior de los argumentos o... (ahem) el medio... 
+de los argumentos de esta manera:
 
     <?php
     function mw1() {
@@ -38,14 +39,14 @@ argument like this:
     }
     $app = new \Slim\Slim();
     $app->get('/foo', 'mw1', 'mw2', function () {
-        //Do something
+        //Haces algo
     });
 
-When the /foo route is invoked, the `mw1` and `mw2` functions will be invoked in sequence before the route’s callable
-is invoked.
+Cuando la ruta /foo es invocada, las funciones `mw1` y `mw2` serán invocadas en secuencia antes que la función de la 
+ruta sea invocada.
 
-Suppose you wanted to authenticate the current user against a given role for a specific route. You could use some
-closure magic like this:
+Supón que quieres autenticar al usuario actual con un rol determinado para una ruta especifica. Puedes usar algo de 
+magia en la función de esta manera:
 
     <?php
     $authenticateForRole = function ( $role = 'member' ) {
@@ -60,12 +61,13 @@ closure magic like this:
     };
     $app = new \Slim\Slim();
     $app->get('/foo', $authenticateForRole('admin'), function () {
-        //Display admin control panel
+        //Mostrar panel de control de administración
     });
 
-### What arguments are passed into each route middleware callable?
+### ¿Que argumentos se pasan en cada función de middleware?
 
-Each middleware callable is invoked with one argument, the currently matched `\Slim\Route` object.
+Cada función de middleware es invocada con un argumento, el objeto `\Slim\Route` que 
+coincida actualmente:
 
     <?php
     $aBitOfInfo = function (\Slim\Route $route) {
