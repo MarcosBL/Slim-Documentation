@@ -1,18 +1,20 @@
 ---
-title: Error Handler
+title: Manejador de Errores
 status: live
 ---
 
-You may use the Slim application’s `error()` method to specify a custom error handler to be invoked when an error or
-exception occurs. Custom error handlers are only invoked if application debugging is disabled.
+Puedes usar el método `error()` de la aplicación Slim para especificar un manejador de errores 
+personalizado para ser invocado cuando un error o excepción ocurre. Los manejadores de errores 
+personalizados solo son invocados si el debugging de la aplicación esta deshabilitados.
 
-A custom error handler should render a user-friendly message that mitigates user confusion. Similar to the Slim
-application’s `notFound()` method, the `error()` method acts as both a getter and a setter.
+Un manejador de errores personalizado debería mostrar un mensaje amigable para usuarios que mitigue 
+confusiones. Similar al método `notFound()` de la aplicación Slim, el método `error()` actúa tanto como 
+getter como setter.
 
-### Set custom error handler
+### Establecer el manejador de errores personalizado
 
-You may set a custom error handler by passing a callable into the Slim application's `error()` method as its first
-and only argument.
+Puedes establecer un manejador de errores personalizado pasando una función al método `error()` de la aplicación 
+Slim como su primer y único argumento.
 
     <?php
     $app = new \Slim\Slim();
@@ -20,11 +22,11 @@ and only argument.
         $app->render('error.php');
     });
 
-In this example, the custom error handler accepts the caught Exception as its argument. This allows you to respond
-appropriately to different exceptions.
+En este ejemplo, el manejador de errores personalizado acepta la excepción atrapada como su argumento. Esto 
+te permite responder apropiadamente a diferentes excepciones. 
 
-### Invoke custom error handler
+### Invocar el manejador de errores personalizado
 
-Usually, the Slim application will automatically invoke the error handler when an exception or error occurs.
-However, you may also manually invoke the error handler with the Slim application’s `error()` method
-(without an argument).
+Por lo general, la aplicación Slim invocara automáticamente al manejador de errores cuando una 
+excepción o error ocurre. Sin embargo, también puedes invocar al manejador de errores manualmente con 
+el método `error()` de la aplicación Slim (sin argumentos).
