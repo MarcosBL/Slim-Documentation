@@ -1,17 +1,18 @@
 ---
-title: Not Found Handler
+title: Manejador No Encontrado
 status: live
 ---
 
-It is an inevitability that someone will request a page that does not exist. The Slim application lets you easily
-define a custom Not Found handler with the Slim application’s `notFound()` method. The Not Found handler will be
-invoked when a matching route is not found for the current HTTP request. This method acts as both a getter and a setter.
+Es inevitable que alguien solicite una pagina que no exista. La aplicación Slim te permite definir 
+fácilmente un manejador No Encontrado personalizado con el método `notFound()` de la aplicación Slim. El 
+manejador No Encontrado sera invocado cuando no se encuentre una ruta que coincida con el request HTTP 
+actual. Este método actúa tanto como getter como setter.
 
-### Set not found handler
+### Establecer el manejador No Encontrado
 
-If you invoke the Slim application’s `notFound()` method and specify a callable object as its first and only
-argument, this method will register the callable object as the Not Found handler. However, the registered handler
-will not be invoked.
+Si invocas el método `notFound()` de la aplicación Slim y especificas una función ejecutable como su primer 
+y único argumento, este método registrara la función como el manejador No Encontrado. Sin embargo, el manejador 
+registrado no sera invocado.
 
     <?php
     $app = new \Slim\Slim();
@@ -19,10 +20,10 @@ will not be invoked.
         $app->render('404.html');
     });
 
-### Invoke not found handler
+### Invocar manejador No Encontrado
 
-If you invoke the Slim application’s `notFound()` method without any arguments, this method will invoke the
-previously registered Not Found handler.
+Si invocas al método `notFound()` de la aplicación Slim sin argumentos, este método invocara el manejador 
+No Encontrado previamente registrado.
 
     <?php
     $app = new \Slim\Slim();
