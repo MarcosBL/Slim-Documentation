@@ -1,26 +1,27 @@
 ---
-title: Debugging
+title: Depuramiento
 status: live
 ---
 
-You can enable debugging during application instantiation with this setting:
+Puedes habilitar el depuramiento durante la instanciación de la aplicación con esta opción:
 
     <?php
     $app = new \Slim\Slim(array(
         'debug' => true
     ));
 
-You may also enable debugging during runtime with the Slim application’s `config()` instance method:
+También puedes habilitar el depuramiento después de la instanciación con el método de 
+`config()` de la aplicación Slim:
 
     <?php
     $app = new \Slim\Slim();
 
-    //Enable debugging (on by default)
+    //Habilitar depuramiento (habilitado por defecto)
     $app->config('debug', true);
 
-    //Disable debugging
+    //Deshabilitar depuramiento
     $app->config('debug', false);
 
-If debugging is enabled and an exception or error occurs, a diagnostic screen will appear with the error description,
-the affected file, the file line number, and a stack trace. If debugging is disabled, the custom Error handler will
-be invoked instead.
+Si el depuramiento esta habilitado y una excepción o error ocurre, una pantalla de diagnostico aparecerá con la 
+descripción del error, el archivo afectado, el numero de la linea del archivo y un rastro de la pila de errores. 
+Si el depuramiento esta desactivado, el manejador de errores personalizado sera invocado en su lugar.
