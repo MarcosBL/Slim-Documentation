@@ -1,13 +1,15 @@
 ---
-title: Native Session Store
+title: Almacenamiento nativo de Sesión
 status: live
 ---
 
-A Slim application does not presume anything about sessions. If you prefer to use a PHP session, you must configure
-and start a native PHP session with `session_start()` before you instantiate the Slim application.
+Una aplicación Slim no da nada por hecho acerca de las sesiones. Si prefieres utilizar 
+una sesión PHP, debes configurar e iniciar una sesión nativa de PHP con 
+`session_start()` antes de instanciar la aplicación Slim.
 
-You should also disable PHP’s session cache limiter so that PHP does not send conflicting cache expiration headers
-with the HTTP response. You can disable PHP’s session cache limiter with:
+Deberías también deshabilitar el limite de caché de sesión de PHP para que PHP 
+no envíe cabeceras de caducidad de caché en la respuesta HTTP. Puedes deshabilitar 
+el límite de caché de sesión de PHP con:
 
     <?php
     session_cache_limiter(false);

@@ -1,51 +1,57 @@
 ---
-title: Log Writers
+title: Escritores de Log
 status: live
 ---
 
-The Slim application’s log object has a log writer. The log writer is responsible for sending a logged message to
-the appropriate output (e.g. STDERR, a log file, a remote web service, Twitter, or a database). Out of the box,
-the Slim application’s log object has a log writer of class `\Slim\LogFileWriter`; this log writer directs output
-to the resource handle referenced by the application environment’s **slim.errors** key (by default, this is
-“php://stderr”). You may also define and use a custom log writer.
+El objeto log de la aplicación Slim dispone de un escritor de logs. El escritor 
+de logs es el responsable de enviar un mensaje logueado a la salida apropiada 
+(p.e. STDERR, un fichero de log, un servicio remoto, Twitter, o una base de datos). 
+Por defecto, el objeto log de una aplicación Slim dispone de un escritor de log 
+con la clase `\Slim\LogFileWriter`; este escritor de logs redirige la salida 
+al gestor de recurso referenciado por la clave de ambiente de la aplicación 
+**slim.errors** (por defecto, es “php://stderr”). También puedes definir y 
+utilizar un escritor de logs a medida.
 
-### How to use a custom log writer
+### ¿Cómo utilizar un escritor de logs a medida?
 
-A custom log writer must implement the following public interface:
+Un escritor de logs a medida debe implementar esta interfaz pública:
 
     <?php
     public function write(mixed $message);
 
-You must tell the Slim application’s log object to use your custom log writer. You can do so in your application’s
-settings during instantiation like this:
+Debes indicar al objeto log de la aplicación Slim que utilice tu escritor de logs 
+a medida. Puedes hacerlo en la configuración de la aplicación al instanciarla, de 
+esta forma:
 
     <?php
     $app = new \Slim\Slim(array(
         'log.writer' => new MyLogWriter()
     ));
 
-You may also set a custom log writer with middleware like this:
+También puedes definir un escritor de logs a medida con middleware así:
 
     <?php
     class CustomLogWriterMiddleware extends \Slim\Middleware
     {
         public function call()
         {
-            //Set the new log writer
+            //Fijamos el nuevo escritor de logs a medida
             $$this->app->log->setWriter(new \MyLogWriter());
 
-            //Call next middleware
+            //Llamamos al próximo middleware
             $this->next->call();
         }
     }
 
-You can set the log writer similarly in an application hook or route callback like this:
+Puedes definir un escritor de logs a medida de forma similar en un hook de aplicación 
+o en el callback de una ruta así:
 
     <?php
     $app->hook('slim.before', function () use ($app) {
         $app->log->setWriter(new \MyLogWriter());
     });
 
-If you only need to redirect error output to a different resource handle, use the Slim applicaiton's default log writer;
-it writes log messages to a resource handle. All you need to do is set the **slim.errors** environment variable to a
-valid resource handle.
+Si solo necesitas redirigir la salida de errores a otro gestor de recurso, utiliza 
+el escritor de log por defecto de la aplicación Slim; éste ya escribe los mensajes de log 
+a un gestor de recurso. Solo necesitas asignar la variable de ambiente **slim.errors** 
+a un gestor de recurso válido.

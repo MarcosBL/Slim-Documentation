@@ -1,11 +1,12 @@
 ---
-title: Cookie Session Store
+title: Almacenamiento de Sesión en Cookies
 status: live
 ---
 
-You may also use the `\Slim\Middleware\SessionCookie` middleware to persist session data in encrypted, hashed
-HTTP cookies. To enable the session cookie middleware, add the `\Slim\Middleware\SessionCookie` middleware to your
-Slim application:
+Puedes utilizar el middleware `\Slim\Middleware\SessionCookie` para mantener datos 
+de sesión en cookies HTTP encriptadas y hasheadas. Para activar el middleware de 
+cookies de sesión, añade el middleware `\Slim\Middleware\SessionCookie` a tu aplicación 
+Slim:
 
     <?php
     $app = new Slim();
@@ -16,12 +17,13 @@ Slim application:
         'secure' => false,
         'httponly' => false,
         'name' => 'slim_session',
-        'secret' => 'CHANGE_ME',
+        'secret' => 'CAMBIA_ME',
         'cipher' => MCRYPT_RIJNDAEL_256,
         'cipher_mode' => MCRYPT_MODE_CBC
     )));
 
-The second argument is optional; it is shown here so you can see the default middleware settings. The session cookie
+El segundo parámetro es opcional; lo mostramos aquí para que puedas ver los ajustes 
+por defecto del middleware. The session cookie
 middleware will work seamlessly with the `$_SESSION` superglobal so you can easily migrate to this session storage
 middleware with zero changes to your application code.
 

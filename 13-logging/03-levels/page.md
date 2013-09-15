@@ -1,51 +1,54 @@
 ---
-title: Log Levels
+title: Niveles de Log
 status: live
 ---
 
 <div class="alert alert-info">
-    <strong>Heads Up!</strong> Use the <code>\Slim\Log</code> constants when setting the log level instead
-    of using raw integers.
+    <strong>¡Información!</strong> Utiliza las constantes de <code>\Slim\Log</code> 
+	cuando fijes el nivel de log en lugar de utilizar números enteros.
 </div>
 
-The Slim application’s log object will respect or ignore logged messages based on its log level setting. When you
-invoke the log objects’s methods, you are inherently assigning a level to the logged message.
-The available log levels are:
+El objeto log de la aplicación Slim respetará o ignorará los mensajes logueados 
+dependiendo de su ajuste de nivel de log. Cuando llamas a los métodos del objeto 
+log, estás ya asignando un nivel al mensaje logueado de forma inherente.
+
+Los niveles de log disponibles son:
 
 \Slim\Log::EMERGENCY
-: Level 1
+: Nivel 1
 
 \Slim\Log::ALERT
-: Level 2
+: Nivel 2
 
 \Slim\Log::CRITICAL
-: Level 3
+: Nivel 3
 
 \Slim\Log::ERROR
-: Level 4
+: Nivel 4
 
 \Slim\Log::WARN
-: Level 5
+: Nivel 5
 
 \Slim\Log::NOTICE
-: Level 6
+: Nivel 6
 
 \Slim\Log::INFO
-: Level 7
+: Nivel 7
 
 \Slim\Log::DEBUG
-: Level 8
+: Nivel 8
 
-Only messages that have a level less than the current log object’s level will be logged. For example, if the log
-object’s level is `\Slim\Log::WARN` (5), the log object will ignore `\Slim\Log::DEBUG` and `\Slim\Log::INFO` messages
-but will accept `\Slim\Log::WARN`, `\Slim\Log::ERROR`, and `\Slim\Log::CRITICAL` messages.
+Solo los mensajes que tengan un nivel inferior al del objeto log actual serán 
+logueados. Por ejemplo, si el nivel del objeto log es `\Slim\Log::WARN` (5), el 
+objeto log ignorará los mensajes `\Slim\Log::DEBUG` y `\Slim\Log::INFO` pero 
+aceptará los mensajes `\Slim\Log::WARN`, `\Slim\Log::ERROR`, y `\Slim\Log::CRITICAL`.
 
-### How to set the log level
+### ¿Cómo ajustar el nivel de log?
 
     <?php
     $app->log->setLevel(\Slim\Log::WARN);
 
-You can set the log object’s level during application instantiation, too:
+También puedes ajustar el nivel del objeto log al instanciar la aplicación:
 
     <?php
     $app = new \Slim\Slim(array(

@@ -1,4 +1,4 @@
 ---
-title: Sessions
+title: Sesiones
 status: live
 ---
