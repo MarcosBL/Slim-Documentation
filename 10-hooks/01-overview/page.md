@@ -1,15 +1,17 @@
 ---
-title: Hooks Overview
+title: Hooks - Introducción
 status: live
 ---
 
-A Slim application provides a set of hooks to which you can register your own callbacks.
+Una aplicación Slim facilita una serie de hooks a los que puedes asociar tus 
+propios callbacks.
 
-### What is a hook?
+### ¿Qué es un hook?
 
-A “hook” is a moment in the Slim application lifecycle at which a priority list of callables assigned to the hook
-will be invoked. A hook is identified by a string name.
+Un “hook” es un momento del ciclo de vida de la aplicación Slim en que una lista 
+prioritizada de “callable” asignadas al hook serán invocadas. Un hook se indentifica 
+por un nombre en formato cadena de texto.
 
-A “callable” is anything that returns `true` for `is_callable()`. A callable is assigned to a hook and is invoked
-when the hook is called. If multiple callables are assigned to a single hook, each callable is invoked in the order
-assigned.
+Un “callable” es algo que devuelve `true` para `is_callable()`. Un callable será 
+asignado a un hook y se invocará cuando se llame a dicho hook. Si hay múltiples 
+callables asignados a un solo hook, cada callable será invocado en el orden asignado.
